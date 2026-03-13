@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from "react"
+import React,{useCallback, useEffect, useState} from "react"
 import ReactDOM from "react-dom/client"
 
 function PasswordGenerator(){
@@ -6,8 +6,8 @@ function PasswordGenerator(){
     const [length,setLength]=useState(1);
     const [number,setNumber]=useState(false);
     const [character,setCharacter]=useState(false);
-
-    function generatePassword(){
+    
+    const generatePassword=useCallback(()=>{
         let str="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
         const nums="0123456789";
         const chars="!~()*&^%$#@*-+/";
@@ -25,7 +25,27 @@ function PasswordGenerator(){
         }
 
         setPassword(pass);
-    }
+    },[length,number,character])
+    // the below fn should not be called when setPassword is called =>it should only change when length,number and chaaracter change
+    // function generatePassword(){
+    //     let str="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    //     const nums="0123456789";
+    //     const chars="!~()*&^%$#@*-+/";
+
+    //     if(number){
+    //         str+=nums;
+    //     }
+    //     if(character){
+    //         str+=chars;
+    //     }
+
+    //     let pass="";
+    //     for(let i=0;i<length;i++){
+    //         pass+=str[Math.floor(Math.random()*str.length)];
+    //     }
+
+    //     setPassword(pass);
+    // }
 
     useEffect(()=>{
         generatePassword();
@@ -53,4 +73,4 @@ onChange={(e)=>setLength(e.target.value)}
 }
 
 const reactRoot=ReactDOM.createRoot(document.getElementById('root'));
-reactRoot.render(<PasswordGenerator/>)
+reactRoot.render(<PasswordGenerator/>);
