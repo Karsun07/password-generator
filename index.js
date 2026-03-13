@@ -12,7 +12,7 @@ function PasswordGenerator(){
         
         <div id="container">
             <h1 style={{fontSize:"48px"}}>{password}</h1>
-            <input style={{width:"100px"}} type="range" min={5} max={50}></input>
+            <input style={{width:"100px"}} type="range" min={5} max={50} value={length} onChange={(e)=>setLength(e.target.value)}></input>
             <label >Length({length})</label>
             <input defaultChecked={number} type="checkbox"></input>
             <label >Numbers</label>
