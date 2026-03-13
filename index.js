@@ -6,7 +6,7 @@ function PasswordGenerator(){
     const [length,setLength]=useState(1);
     const [number,setNumber]=useState(false);
     const [character,setCharacter]=useState(false);
-    
+    // M-2
     const generatePassword=useCallback(()=>{
         let str="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
         const nums="0123456789";
@@ -26,6 +26,7 @@ function PasswordGenerator(){
 
         setPassword(pass);
     },[length,number,character])
+    //M-1
     // the below fn should not be called when setPassword is called =>it should only change when length,number and chaaracter change
     // function generatePassword(){
     //     let str="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -47,9 +48,14 @@ function PasswordGenerator(){
     //     setPassword(pass);
     // }
 
+    // useEffect(()=>{
+    //     generatePassword();
+    // },[length,number,character])
+
+    // below is optional (useCallback and useEffect together)for M-2 in place of lenth,number , character we can put GeneatePassword as dependency
     useEffect(()=>{
         generatePassword();
-    },[length,number,character])
+    },[generatePassword])
 
     return (
         <>
