@@ -68,7 +68,11 @@ onChange={(e)=>setLength(e.target.value)}
             ></input>
             <label>Length({length})</label>
 
-            <input checked={number} type="checkbox" onChange={()=>setNumber(!number)}></input>
+          <input 
+          type="checkbox"
+          checked={number}
+           onChange={(e) => setNumber(e.target.checked)}
+/>
             <label>Numbers</label>
 
             <input checked={character} type="checkbox" onChange={()=>setCharacter(!character)}></input>
